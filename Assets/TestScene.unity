@@ -112,11 +112,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &214954700 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1846497096794200, guid: 92c7e119d0da6c945ab0ebc65d84088d,
-    type: 2}
-  m_PrefabInternal: {fileID: 1948378976}
 --- !u!1 &246962391
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +139,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b8eb26edd1dc04198b310b755d72c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: {fileID: 214954700}
+  obstacle: {fileID: 1149594273770704, guid: 3c066854e45334b49a7965cb752f439b, type: 2}
+  trap: {fileID: 1536912207474366, guid: 9326a3c13c0887d459069d8a20ba9e75, type: 2}
+  tilePrefabs:
+  - {fileID: 1846497096794200, guid: 92c7e119d0da6c945ab0ebc65d84088d, type: 2}
+  - {fileID: 1402981386080800, guid: aa23c7f2b6089a8438a3bedd2c6f9f76, type: 2}
+  - {fileID: 1988844522535012, guid: 56985019ed63a004dbfce95afc631947, type: 2}
 --- !u!4 &246962393
 Transform:
   m_ObjectHideFlags: 0
@@ -303,45 +303,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &1948378976
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4732276116794344, guid: 92c7e119d0da6c945ab0ebc65d84088d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4732276116794344, guid: 92c7e119d0da6c945ab0ebc65d84088d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4732276116794344, guid: 92c7e119d0da6c945ab0ebc65d84088d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4732276116794344, guid: 92c7e119d0da6c945ab0ebc65d84088d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4732276116794344, guid: 92c7e119d0da6c945ab0ebc65d84088d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4732276116794344, guid: 92c7e119d0da6c945ab0ebc65d84088d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4732276116794344, guid: 92c7e119d0da6c945ab0ebc65d84088d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4732276116794344, guid: 92c7e119d0da6c945ab0ebc65d84088d, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 92c7e119d0da6c945ab0ebc65d84088d, type: 2}
-  m_IsPrefabParent: 0
