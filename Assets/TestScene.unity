@@ -88,6 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -139,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b8eb26edd1dc04198b310b755d72c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 1149594273770704, guid: 3c066854e45334b49a7965cb752f439b, type: 2}
+  obstacle: {fileID: 1576824241712960, guid: 3c066854e45334b49a7965cb752f439b, type: 2}
   trap: {fileID: 1536912207474366, guid: 9326a3c13c0887d459069d8a20ba9e75, type: 2}
   tilePrefabs:
   - {fileID: 1846497096794200, guid: 92c7e119d0da6c945ab0ebc65d84088d, type: 2}
@@ -221,6 +222,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
