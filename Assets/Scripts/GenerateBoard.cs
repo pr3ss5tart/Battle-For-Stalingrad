@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class GenerateBoard : MonoBehaviour {
 
     public GameObject obstacle;
@@ -23,10 +23,17 @@ public class GenerateBoard : MonoBehaviour {
 
     private void CreateLevel()
     {
-        string[] mapData = new string[] {
-            "0000",
-            "1111",
-            "2222"
+        //string[] mapData = ReadLevelData();
+        string[] mapData = new string[]
+        {
+            "220222022220000000",
+            "020202020020000000",
+            "020202020020000000",
+            "020202020020000000",
+            "020202020020000000",
+            "020202020020000000",
+            "022202220022000000"
+            //"000000000000000000"
         };
 
         int mapXSize = mapData[0].ToCharArray().Length; //since each index is the same length, we can just use one index as reference
@@ -68,5 +75,29 @@ public class GenerateBoard : MonoBehaviour {
                 break;
         }
 
+    }
+
+    private string[] ReadLevelData()
+    {
+        Debug.Log("Reading level data...");
+       
+        string fileText = System.IO.File.ReadAllText(@"C:\Users\bloesch\Desktop\Battle-For-Stalingrad-master\Battle-For-Stalingrad-master\Assets\Level.txt");
+        string[] textArr = fileText.Split('\n');
+        /* try
+         {
+             string tempData = data.text.Replace(Environment.NewLine, string.Empty); //loads data into temp string, also replaces '-' with ' '
+             return tempData.Split('-');
+         }
+         catch(NullReferenceException ex)
+         {
+             Debug.Log(ex);
+         }*/
+
+        for (int i = 0; i < textArr.Length*2; i++)
+        {
+            Debug.Log(textArr[i]);
+        }
+
+        return textArr;
     }
 }
