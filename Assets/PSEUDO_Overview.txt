@@ -1,0 +1,37 @@
+Node:
+Each node contains:
+1. GameObject
+2. Public X/Y Positions
+3. Node type (tower, walkable, trap, etc)
+
+Map Gen:
+1. Read mapFile, place each line into string[] mapData (Will comeback to this!)
+2. loop through each string of mapData, placing a correct node at the next X/Y Pos, based on type.
+?3. Creates a dictionary of nodes, then links walkable nodes into a public linked list.
+
+Level Manager:
+1. Tracks turn order and count.
+2. Gives player resources based on turn.
+?3. Draws card for player every other turn.
+4. Tracks # of troops, building health, wave count, etc.
+
+Russians:
+1. Places towers/traps based on cards and RP.
+
+Germans:
+1. Continously spawns troops, sending them to different lanes.
+2. Player can send specific troops based on cards in hand and RP.
+3. Increase wave-size linearlly each wave.
+
+Win Condition (Russians):
+-Player lasts 10 waves.
+
+Win Condition (Germans):
+-Player destroys Russian tower in under 10 waves.
+
+
+
+
+
+
+

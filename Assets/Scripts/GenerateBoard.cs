@@ -6,15 +6,20 @@ public class GenerateBoard : MonoBehaviour {
 
     public GameObject obstacle;
     public GameObject trap;
+    public GameObject russian;
+    public GameObject german;
     public GameObject[] tilePrefabs;
+
+    public float TileSize
+    {
+        get { return tilePrefabs[0].GetComponent<Renderer>().bounds.size.x; }
+    }
 
 	// Use this for initialization
 	void Start () {
         
        CreateLevel();
     }
-	
-    //I'm a comment
 
 	// Update is called once per frame
 	void Update () {
@@ -26,72 +31,73 @@ public class GenerateBoard : MonoBehaviour {
         //string[] mapData = ReadLevelData();
         string[] mapData = new string[]
         {
-            "220222022220000000",
-            "020202020020000000",
-            "020202020020000000",
-            "020202020020000000",
-            "020202020020000000",
-            "020202020020000000",
-            "022202220022000000"
-            //"000000000000000000"
+            "2222222222222",
+            "3000000000001",
+            "2022222222222",
+            "2022222220002",
+            "3000000020201",
+            "2022222000222",
+            "2022222222222",
+            "2022222222222",
+            "3000000000001",
+            "2222222222222"
         };
 
         int mapXSize = mapData[0].ToCharArray().Length; //since each index is the same length, we can just use one index as reference
-        int mapYSize = mapData.Length; 
+        int mapYSize = mapData.Length;
+
+        Vector3 worldStart = new Vector3(0, 0, 0);
 
         for (int y = 0; y < mapYSize; y++)
         {
             char[] newTiles = mapData[y].ToCharArray(); //stores the chars at index y in their own array
             for (int x = 0; x < mapXSize; x++)
             {
+                //places tile in world
                 //newTiles[x].ToString iterates through each char in newTiles array. NewTiles gets recreated with new indexes once this is done.
-                GenerateTile(newTiles[x].ToString(), x, y);
+                PlaceTile(newTiles[x].ToString(), x, y, worldStart);
             }
         }
     }
 
-    void GenerateTile(string tileType, int x, int y)
+    private Vector3 PlaceTile(string tileType, int x, int z, Vector3 worldStart)
     {
-        int tileIndex = int.Parse(tileType); //converts from string to int
-        float tileX = tilePrefabs[0].GetComponent<Renderer>().bounds.size.x; //Gets size of tile
+        Debug.Log("Boop");
 
-        switch (tileIndex)
+        //parses tile type to an int, so it can use it as an indexer when we create new tile
+        int tileIndex = int.Parse(tileType);
+
+        //Creates new tile and makes reference to that tile in newTile vars
+        TileScript newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<TileScript>();
+
+        //GameObject newTile = Instantiate(tilePrefabs[tileIndex]);
+
+        //Uses mew tile var to change pos of tile
+        newTile.transform.position = new Vector3(TileSize * x, 0, TileSize * z);
+
+        if (tileIndex == 3) //spawns russian player piece
         {
-            case 0:
-                GameObject newTile0 = Instantiate(tilePrefabs[tileIndex]);
-                newTile0.transform.position = new Vector3(tileX * x, 0, tileX * y);
-                break;
-            case 1:
-                GameObject newTile1 = Instantiate(tilePrefabs[tileIndex]);
-                GameObject newPiece1 = Instantiate(trap);
-                newTile1.transform.position = new Vector3(tileX * x, 0, tileX * y);
-                newPiece1.transform.position = new Vector3(tileX * x, 0.5f, tileX * y);
-                break;
-            case 2:
-                GameObject newTile2 = Instantiate(tilePrefabs[tileIndex]);
-                GameObject newPiece2 = Instantiate(obstacle);
-                newTile2.transform.position = new Vector3(tileX * x, 0, tileX * y);
-                newPiece2.transform.position = new Vector3(tileX * x, 0.5f, tileX * y);
-                break;
+            GameObject newPiece = Instantiate(russian);
+            newPiece.transform.position = new Vector3(TileSize * x, 0.5f, TileSize * z);
         }
+        else if (tileIndex == 1) //spawns german piece
+        {
+            GameObject newPiece = Instantiate(german);
+            newPiece.transform.position = new Vector3(TileSize * x, 0.5f, TileSize * z);
+        }
+        
 
+        //newTile.Setup(new Point(x, z));
+        return newTile.transform.position;
     }
 
+    //Trying to get ReadLevelData() to work...
     private string[] ReadLevelData()
     {
         Debug.Log("Reading level data...");
        
         string fileText = System.IO.File.ReadAllText(@"C:\Users\bloesch\Desktop\Battle-For-Stalingrad-master\Battle-For-Stalingrad-master\Assets\Level.txt");
         string[] textArr = fileText.Split('\n');
-        /* try
-         {
-             string tempData = data.text.Replace(Environment.NewLine, string.Empty); //loads data into temp string, also replaces '-' with ' '
-             return tempData.Split('-');
-         }
-         catch(NullReferenceException ex)
-         {
-             Debug.Log(ex);
-         }*/
 
         for (int i = 0; i < textArr.Length*2; i++)
         {
