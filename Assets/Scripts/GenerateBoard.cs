@@ -67,14 +67,6 @@ public class GenerateBoard : MonoBehaviour {
         //parses tile type to an int, so it can use it as an indexer when we create new tile
         int tileIndex = int.Parse(tileType);
 
-        //Creates new tile and makes reference to that tile in newTile vars
-        TileScript newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<TileScript>();
-
-        //GameObject newTile = Instantiate(tilePrefabs[tileIndex]);
-
-        //Uses mew tile var to change pos of tile
-        newTile.transform.position = new Vector3(TileSize * x, 0, TileSize * z);
-
         if (tileIndex == 3) //spawns russian player piece
         {
             GameObject newPiece = Instantiate(russian);
@@ -85,7 +77,14 @@ public class GenerateBoard : MonoBehaviour {
             GameObject newPiece = Instantiate(german);
             newPiece.transform.position = new Vector3(TileSize * x, 0.5f, TileSize * z);
         }
-        
+
+        //Creates new tile and makes reference to that tile in newTile vars
+        TileScript newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<TileScript>();
+
+        //GameObject newTile = Instantiate(tilePrefabs[tileIndex]);
+
+        //Uses mew tile var to change pos of tile
+        newTile.transform.position = new Vector3(TileSize * x, 0, TileSize * z);
 
         //newTile.Setup(new Point(x, z));
         return newTile.transform.position;
