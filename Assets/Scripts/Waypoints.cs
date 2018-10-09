@@ -11,7 +11,7 @@ public class Waypoints : MonoBehaviour {
     BuildLevel waypointsList;
     private void Start()
     {
-        waypointCount = FindObjectOfType<BuildLevel>().waypoints.Count;
+       // waypointCount = FindObjectOfType<BuildLevel>().waypoints.Count;
     }
 
     private void Awake()

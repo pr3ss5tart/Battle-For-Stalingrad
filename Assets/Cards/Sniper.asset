@@ -11,8 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c77e45250ce8dc498b22715f114866e, type: 3}
   m_Name: Sniper
   m_EditorClassIdentifier: 
+  cardType: Tower
   cardName: Sniper
   description: One shot...One kill.
   resourceCost: 3
   health: 2
   attack: 5
+  effector: 0

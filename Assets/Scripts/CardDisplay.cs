@@ -7,6 +7,7 @@ public class CardDisplay : MonoBehaviour {
 
     public Card card;
 
+    public Text typeText;
     public Text nameText;
     public Text descriptionText;
 
@@ -16,7 +17,8 @@ public class CardDisplay : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        nameText.text = card.name;
+        typeText.text = card.cardType;
+        nameText.text = card.cardName;
         descriptionText.text = card.description;
         healthText.text = card.health.ToString();
         resourceText.text = card.resourceCost.ToString();
