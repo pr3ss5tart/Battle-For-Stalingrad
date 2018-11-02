@@ -10,21 +10,20 @@ public class Tower : MonoBehaviour {
     //All tower cards inherit from the main tower class.
 
     [Header("Health")]
-    public int towerHealth;
+    public int towerHealth = 20;
 
     [Header("Attack Variables")]
     public float fireRate = 1f;
     private float fireCountdown = 0f;
     public float range = 15f;
     public int towerAttack;
+    //public int towerHealth = 20;
     public Transform firepoint;
     public GameObject bulletPrefab;
 
     [Header("Target Variables")]
     public Transform target;
     public string enemyTag = "Enemy";
-
-    
 
 	// Use this for initialization
 	void Start () {
@@ -40,8 +39,7 @@ public class Tower : MonoBehaviour {
 
         //We need an array to list the number of enemies in the map.
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-
-        
+       
         foreach(GameObject enemy in enemies)
         {
             //We need to calculate the distance between this position and target position
@@ -63,10 +61,6 @@ public class Tower : MonoBehaviour {
                 target = null;
             }
         }
-
-        
-       
-        //Then we shoot.
     }
 
     // Update is called once per frame
@@ -76,7 +70,6 @@ public class Tower : MonoBehaviour {
 
         if(fireCountdown <= 0f)
         {
-            //fire()
             Shoot();
             fireCountdown = 1f / fireRate;
         }
@@ -84,14 +77,22 @@ public class Tower : MonoBehaviour {
         fireCountdown -= Time.deltaTime; //Decreases countdown by each second
 	}
 
+    public void TakeDamage(int damage)
+    {
+        towerHealth -= damage;
+        Debug.Log("Tower health " + towerHealth);
+        if (towerHealth <= 0)
+            Destroy(gameObject); //kill enemy
+    }
+
     void Shoot()
     {
-       // Debug.Log("BANG!!!");
         GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firepoint.position, firepoint.rotation); //Casts GameObj to bullet instantiation
         Bullet bullet = bulletGO.GetComponent<Bullet>();
 
         if (bullet != null)
         {
+            bullet.SetDmg(towerAttack);
             bullet.Seek(target);
         }
     }

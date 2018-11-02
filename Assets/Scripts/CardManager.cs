@@ -15,11 +15,21 @@ public class CardManager : MonoBehaviour {
     /*This method holds a hastable of cardNames linked to cardData,
      which is separated by the two greater card type catagories: Spell or Tower*/
     //}
+    public TurretBlueprint standardTurret;
+    public TurretBlueprint missileLauncher;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    public GameObject tb;
+    private TowerBuilder towerBuilder;
+
+    // Use this for initialization
+    void Start () {
+        //buildManager = buildManager.instance;
+        //buildManager.CanBuild = false;
+        //GameObject go = GameObject.FindGameObjectWithTag("Node");
+        //node = go.GetComponent<Node>();
+        tb = GameObject.Find("CardBuilder");
+        towerBuilder = tb.GetComponent<TowerBuilder>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -35,9 +45,11 @@ public class CardManager : MonoBehaviour {
                 break;
             case "Soldier":
                 Debug.Log("Soldier selected");
+                towerBuilder.canBuild = true;
                 break;
             case "Sniper":
                 Debug.Log("Sniper selected");
+                towerBuilder.canBuild = true;
                 break;
             default:
                 Debug.Log("Invalid card type...");

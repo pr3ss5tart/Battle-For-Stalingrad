@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WaveDisplay : MonoBehaviour {
+public class CountdownDisplay : MonoBehaviour {
 
     public WaveSpawner ws;
-
-    public Text waveText;
-
+    public Text countdownText;
+	
 	// Update is called once per frame
-	void Update() {
-        waveText.text = "Wave: " + (ws.waveNumber - 1);
+	void Update () {
+        countdownText.text = string.Format("{0:00.00}", ws.countdown);
 	}
 }

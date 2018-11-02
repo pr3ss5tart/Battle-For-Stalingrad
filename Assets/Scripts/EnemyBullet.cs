@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
-{
+public class EnemyBullet : MonoBehaviour {
 
     public float speed = 70f;
     public GameObject hitEffect;
@@ -25,7 +24,7 @@ public class Bullet : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        Debug.Log("I'm a bullet!!!");
     }
 
     // Update is called once per frame
@@ -56,40 +55,43 @@ public class Bullet : MonoBehaviour
         GameObject hitEffectInstance = (GameObject)Instantiate(hitEffect, transform.position, transform.rotation);
         Destroy(hitEffectInstance, 1.5f);
 
-        if (areaOfEffect > 0f)
-        {
-            Explode();
-        }
-        else
-        {
-            Damage(target);
-        }
+        //if (areaOfEffect > 0f)
+        //{
+        //    Explode();
+        //}
+        //else
+        //{
+        //    Damage(target);
+        //}
 
         Damage(target);
         //Destroy(gameObject);
     }
 
-    void Explode()
-    {
-        //Damages each enemy within the blast radius
-        Collider[] colliders = Physics.OverlapSphere(transform.position, areaOfEffect);
-        foreach(Collider col in colliders)
-        {
-            if(col.tag == "Enemy")
-            {
-                Debug.Log("Enemy hit!");
-                Damage(col.transform);
-            }
-        }
-    }
+    //void Explode()
+    //{
+    //    //Damages each enemy within the blast radius
+    //    Collider[] colliders = Physics.OverlapSphere(transform.position, areaOfEffect);
+    //    foreach (Collider col in colliders)
+    //    {
+    //        if (col.tag == "Enemy")
+    //        {
+    //            Debug.Log("Enemy hit!");
+    //            Damage(col.transform);
+    //        }
+    //    }
+    //}
 
     void Damage(Transform enemy)
     {
         Enemy e = enemy.GetComponent<Enemy>();
 
+        Tower t = enemy.GetComponent<Tower>();
+
         Destroy(gameObject);
         //Destroy(enemy.gameObject);
-        e.TakeDamage(2);
+        //e.TakeDamage(2);
+        t.TakeDamage(2);
     }
 
     void OnDrawGizmosSelected()

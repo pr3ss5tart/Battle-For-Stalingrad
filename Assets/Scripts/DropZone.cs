@@ -21,5 +21,7 @@ public class DropZone : MonoBehaviour, IDropHandler {
         //sends card name to CardManager
         cm.ActivateCard(eventData.pointerDrag.name);
 
+        //Destroy dropped card
+        Destroy(eventData.pointerDrag);
     }
 }
