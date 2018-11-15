@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class TowerBuilder : MonoBehaviour {
 
-    public GameObject sniper;
+    public GameObject tower;
+
+    public List<GameObject> towerList;
 
     public bool canBuild = false;
 
@@ -12,7 +14,7 @@ public class TowerBuilder : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		//towerList.
 	}
 
 	// Update is called once per frame
@@ -31,9 +33,6 @@ public class TowerBuilder : MonoBehaviour {
         {
             return;
         }
-        else
-        {
-
-        }
+        
     }
 }

@@ -18,9 +18,13 @@ public class WaveSpawner : MonoBehaviour {
     List<GameObject> enemies = new List<GameObject>();
     List<GameObject> enemiesToAdd = new List<GameObject>(); //temp enemies list
 
+    private GameObject cards;
+    private CardSpawner cardSpawner;
+
     void Start()
     {
-        //Initial instantiation
+        cards = GameObject.Find("Hand");
+        cardSpawner = cards.GetComponent<CardSpawner>();
     }
 
     // Update is called once per frame
@@ -33,6 +37,7 @@ public class WaveSpawner : MonoBehaviour {
             if(countdown <= 0f) //runs countdown to next wave
             {
                 Debug.Log("Incoming wave...");
+                cardSpawner.DrawCard();
                 StartCoroutine("SpawnWaves");
                 countdown = timeBeforeWaves;
             }
@@ -50,7 +55,7 @@ public class WaveSpawner : MonoBehaviour {
     void DisplayUI()
     {
         //UI displays here
-        waveText.text = "Wave: " + (waveNumber-1);
+        waveText.text = "Wave: " + (waveNumber);
         countdownText.text = string.Format("{0:00}", countdown);
     }
 
@@ -77,9 +82,10 @@ public class WaveSpawner : MonoBehaviour {
     //After instantiation, load enemy into enemyList. 
     IEnumerator SpawnWaves()
     {
+        waveNumber++;
         //List<GameObject> enemies = new List<GameObject>();
 
-        for (int i = 0; i < waveNumber; i++)
+        for (int i = 0; i < waveNumber+3; i++)
         {
             GameObject e = Instantiate(enemyPrefab, enemySpawner.transform.position, enemySpawner.transform.rotation);
 
@@ -88,6 +94,5 @@ public class WaveSpawner : MonoBehaviour {
             yield return new WaitForSeconds(1f);
         }
 
-        waveNumber++;
     }
 }

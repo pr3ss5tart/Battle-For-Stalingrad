@@ -9,22 +9,17 @@ public class EnemyBullet : MonoBehaviour {
     public float areaOfEffect = 0f;
 
     private Transform target;
+    //private GameObject target;
     private int damage;
 
-    public void Seek(Transform _target)
-    {
-        target = _target;
-    }
-
-    public void SetDmg(int dmg)
-    {
-        damage = dmg;
-    }
-
+    private GameObject go;
+    private Enemy enemy;
+    
     // Use this for initialization
     void Start()
     {
-        Debug.Log("I'm a bullet!!!");
+        //Debug.Log("I'm a bullet!!!");
+        //enemy.isTurnCoat = false;
     }
 
     // Update is called once per frame
@@ -50,6 +45,16 @@ public class EnemyBullet : MonoBehaviour {
         transform.Translate(dir.normalized * distanceMPF, Space.World);
     }
 
+    public void Seek(Transform _target)
+    {
+        target = _target;
+    }
+
+    public void SetDmg(int dmg)
+    {
+        damage = dmg;
+    }
+
     void HitTarget()
     {
         GameObject hitEffectInstance = (GameObject)Instantiate(hitEffect, transform.position, transform.rotation);
@@ -68,22 +73,22 @@ public class EnemyBullet : MonoBehaviour {
         //Destroy(gameObject);
     }
 
-    //void Explode()
-    //{
-    //    //Damages each enemy within the blast radius
-    //    Collider[] colliders = Physics.OverlapSphere(transform.position, areaOfEffect);
-    //    foreach (Collider col in colliders)
-    //    {
-    //        if (col.tag == "Enemy")
-    //        {
-    //            Debug.Log("Enemy hit!");
-    //            Damage(col.transform);
-    //        }
-    //    }
-    //}
+    void Explode()
+    {
+        //Damages each enemy within the blast radius
+        Collider[] colliders = Physics.OverlapSphere(transform.position, areaOfEffect);
+        foreach (Collider col in colliders)
+        {
+            if (col.tag == "Enemy")
+            {
+                Debug.Log("Enemy hit!");
+                Damage(col.transform);
+            }
+        }
+    }
 
     void Damage(Transform enemy)
-    {
+    {      
         Enemy e = enemy.GetComponent<Enemy>();
 
         Tower t = enemy.GetComponent<Tower>();
@@ -91,7 +96,19 @@ public class EnemyBullet : MonoBehaviour {
         Destroy(gameObject);
         //Destroy(enemy.gameObject);
         //e.TakeDamage(2);
-        t.TakeDamage(2);
+
+
+        //if (e.isTurnCoat == true)
+        //{
+        //    e.TakeDamage(2.5f);
+        //}
+        //else
+        //{
+        //    t.TakeDamage(2.5f);
+
+        //}
+
+        t.TakeDamage(5);
     }
 
     void OnDrawGizmosSelected()

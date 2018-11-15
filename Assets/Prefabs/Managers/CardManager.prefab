@@ -48,6 +48,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1150254201941322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebf91698986cc494b91ec8e3eb14ef6b, type: 3}
+  m_Script: {fileID: 11500000, guid: bfd125eddbef9084cb235adab3b6761a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  standardTurret:
+    prefab: {fileID: 0}
+    cost: 0
+    upgradedPrefab: {fileID: 0}
+    upgradeCost: 0
+  missileLauncher:
+    prefab: {fileID: 0}
+    cost: 0
+    upgradedPrefab: {fileID: 0}
+    upgradeCost: 0
+  tb: {fileID: 0}

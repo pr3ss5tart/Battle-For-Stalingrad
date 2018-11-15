@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
 
@@ -13,7 +14,8 @@ public class Enemy : MonoBehaviour {
     public Transform partToRotate;
     public GameObject bulletPrefab;
 
-    private int enemyHealth = 10;
+    private int enemyStartHealth = 4;
+    private int enemyHealth;
     private float fireCountdown = 0f;
     private float fireRate = 1f;
     private float gunTurnSpeed = 10f;
@@ -21,9 +23,13 @@ public class Enemy : MonoBehaviour {
     private Transform enemyTarget;
     private int wayPointIndex = 0;
 
+    [Header("Unity Stuff")]
+    public GameObject healthBar;
+
 	// Use this for initialization
 	void Start () {
-        Debug.Log("Enemy health " + enemyHealth);
+        enemyHealth = enemyStartHealth;
+        //Debug.Log("Enemy health " + enemyHealth);
         target = Waypoints.points[0];
         enemyTarget = null;
         isTurnCoat = false;
@@ -63,7 +69,7 @@ public class Enemy : MonoBehaviour {
 
         if (fireCountdown <= 0f)
         {
-            Debug.Log("BANG BANG!");
+            //Debug.Log("BANG BANG!");
             Shoot();
             fireCountdown = 1f / fireRate;
         }
@@ -101,7 +107,11 @@ public class Enemy : MonoBehaviour {
     public void TakeDamage(int damage)
     {
         enemyHealth -= damage;
-        Debug.Log("Enemy health "+enemyHealth);
+
+        //healthBar.fillAmount = enemyHealth / enemyStartHealth;
+        healthBar.transform.localScale -= new Vector3(0.5f, 0, 0);
+
+        //Debug.Log("Enemy health "+enemyHealth);
         if (enemyHealth <= 0)
             Destroy(gameObject); //kill enemy
     }
@@ -111,6 +121,9 @@ public class Enemy : MonoBehaviour {
         if(wayPointIndex >= Waypoints.points.Length - 1) //reaches end of waypoints
         {
             Destroy(gameObject);
+            //GameObject gorp = GameObject.Find("Player");
+            //PlayerStats ps = gorp.GetComponent<PlayerStats>();
+            //ps.Damage();
         }
 
         wayPointIndex++;
@@ -123,18 +136,20 @@ public class Enemy : MonoBehaviour {
         GameObject closestEnemy = null;
 
         //We need an array to list the number of Towers in the map.
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(towerTag);
+        GameObject[] enemies;
 
-        /*if(isTurnCoat == true)
+        if(isTurnCoat == false)
         {
             //We need an array to list the number of Towers in the map.
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag(towerTag);
+            enemies = GameObject.FindGameObjectsWithTag(towerTag);
         }
         else
         {
             //We need an array to list the number of Enemy in the map.
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        }*/
+            enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+            //enemyBullet.areaOfEffect = 5f;
+
+        }
 
 
         foreach (GameObject enemy in enemies)
@@ -152,7 +167,6 @@ public class Enemy : MonoBehaviour {
             if (closestEnemy != null && minDistance <= range)
             {
                 enemyTarget = closestEnemy.transform;
-                Debug.Log("Surprise Mothafucka!");
             }
             else
             {

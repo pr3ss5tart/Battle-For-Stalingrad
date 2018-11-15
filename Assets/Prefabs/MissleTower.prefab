@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc7dbe5dd847be4eb47a44a95f9f01c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerHealth: 0
+  towerHealth: 20
   fireRate: 1
   range: 20
   towerAttack: 0
@@ -134,6 +134,7 @@ MonoBehaviour:
     type: 2}
   target: {fileID: 0}
   enemyTag: Enemy
+  healthBar: {fileID: 0}
 --- !u!136 &136921777752076014
 CapsuleCollider:
   m_ObjectHideFlags: 1

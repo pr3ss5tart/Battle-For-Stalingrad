@@ -7,6 +7,13 @@ public class DropZone : MonoBehaviour, IDropHandler {
 
     public CardManager cm;
 
+    private GameObject cardManager;
+
+    void Start()
+    {
+        //cardManager = GameObject.Find()
+    }
+
     public void OnDrop(PointerEventData eventData)
     {
 

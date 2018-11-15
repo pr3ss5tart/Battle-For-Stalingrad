@@ -89,7 +89,7 @@ public class Bullet : MonoBehaviour
 
         Destroy(gameObject);
         //Destroy(enemy.gameObject);
-        e.TakeDamage(2);
+        e.TakeDamage(1);
     }
 
     void OnDrawGizmosSelected()

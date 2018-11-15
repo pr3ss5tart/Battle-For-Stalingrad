@@ -48,24 +48,17 @@ public class Node : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Woot, you can build!!!");
-            //GameObject turretToBuild = BuildManager.instance.GetTurretToBuild();
-            turret = (GameObject)Instantiate(towerBuilder.sniper, transform.position + posOffset, transform.rotation);
-            towerBuilder.canBuild = false;
+            BuildTurret();
         }
 
     }
 
-    //void BuildTurret(TurretBlueprint blueprint)
-    //{
-    //    //include resource points stuff here...
-
-    //    //Build turret here...
-    //    GameObject _turret = (GameObject)Instantiate(blueprint.prefab, GetBuildPosition(), Quaternion.identity);
-    //    turret = _turret;
-
-    //    Debug.Log("Turret built!");
-    //}
+    void BuildTurret()
+    {
+        Debug.Log("Woot, you can build!!!");
+        turret = (GameObject)Instantiate(towerBuilder.tower, transform.position + posOffset, transform.rotation);
+        towerBuilder.canBuild = false;
+    }
 
     //public void UpgradeTurret()
     //{

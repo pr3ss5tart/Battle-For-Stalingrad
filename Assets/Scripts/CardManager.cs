@@ -4,17 +4,6 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour {
 
-    //TODO
-    /*
-     1. When first called, check cardType
-     2. void ShuffleDeck() this loads a number of cards into the deck. 
-     3. Card DrawCard() Player draws one card per wave. Don't worry about resource points yet...*/
-
-
-    //void CreateCard(string cardType, string cardName){
-    /*This method holds a hastable of cardNames linked to cardData,
-     which is separated by the two greater card type catagories: Spell or Tower*/
-    //}
     public TurretBlueprint standardTurret;
     public TurretBlueprint missileLauncher;
 
@@ -40,15 +29,28 @@ public class CardManager : MonoBehaviour {
     {
         switch (cardName)
         {
-            case "Molotov":
+            case "Molotov(Clone)":                  //Molotov
                 Debug.Log("Molotov selected");
                 break;
-            case "Soldier":
+            case "TurnCoat(Clone)":                 //TurnCoat
+                Debug.Log("Turn Coat selected");
+                break;
+            case "Flooding(Clone)":                 //Flood
+                Debug.Log("Flooding selected");
+                break;
+            case "Soldier(Clone)":                  //Soldier
                 Debug.Log("Soldier selected");
+                towerBuilder.tower = towerBuilder.towerList[0];
                 towerBuilder.canBuild = true;
                 break;
-            case "Sniper":
-                Debug.Log("Sniper selected");
+            case "Sniper(Clone)":                   //Sniper
+                Debug.Log("Sniper selected");      
+                towerBuilder.tower = towerBuilder.towerList[1];
+                towerBuilder.canBuild = true;
+                break;
+            case "Rocketeer(Clone)":                //Rocketeer
+                Debug.Log("Rocketeer selected");        
+                towerBuilder.tower = towerBuilder.towerList[2];
                 towerBuilder.canBuild = true;
                 break;
             default:

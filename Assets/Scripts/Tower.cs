@@ -10,7 +10,7 @@ public class Tower : MonoBehaviour {
     //All tower cards inherit from the main tower class.
 
     [Header("Health")]
-    public int towerHealth = 20;
+    public float towerHealth = 20;
 
     [Header("Attack Variables")]
     public float fireRate = 1f;
@@ -25,8 +25,11 @@ public class Tower : MonoBehaviour {
     public Transform target;
     public string enemyTag = "Enemy";
 
-	// Use this for initialization
-	void Start () {
+    [Header("Unity Stuff")]
+    public GameObject healthBar;
+
+    // Use this for initialization
+    void Start () {
         //This calls the UpdateTarget twice/sec. 
         //We want this so the turret will constantly scan for enemies.
         InvokeRepeating("UpdateTarget", 0f, 0.5f); 	
@@ -80,6 +83,8 @@ public class Tower : MonoBehaviour {
     public void TakeDamage(int damage)
     {
         towerHealth -= damage;
+        healthBar.transform.localScale -= new Vector3(0.5f, 0, 0);
+
         Debug.Log("Tower health " + towerHealth);
         if (towerHealth <= 0)
             Destroy(gameObject); //kill enemy
