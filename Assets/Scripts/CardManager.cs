@@ -7,17 +7,15 @@ public class CardManager : MonoBehaviour {
     public TurretBlueprint standardTurret;
     public TurretBlueprint missileLauncher;
 
-    public GameObject tb;
+    public GameObject go;
     private TowerBuilder towerBuilder;
+    private Spells spellcaster;
 
     // Use this for initialization
     void Start () {
-        //buildManager = buildManager.instance;
-        //buildManager.CanBuild = false;
-        //GameObject go = GameObject.FindGameObjectWithTag("Node");
-        //node = go.GetComponent<Node>();
-        tb = GameObject.Find("CardBuilder");
-        towerBuilder = tb.GetComponent<TowerBuilder>();
+        go = GameObject.Find("CardBuilder");
+        towerBuilder = go.GetComponent<TowerBuilder>();
+        spellcaster = go.GetComponent<Spells>();
     }
 	
 	// Update is called once per frame
@@ -31,6 +29,7 @@ public class CardManager : MonoBehaviour {
         {
             case "Molotov(Clone)":                  //Molotov
                 Debug.Log("Molotov selected");
+                spellcaster.isMolotov = true;
                 break;
             case "TurnCoat(Clone)":                 //TurnCoat
                 Debug.Log("Turn Coat selected");
