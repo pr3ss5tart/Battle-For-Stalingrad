@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
 
+    public int enemyStartHealth = 6;
+    public static int enemyHealth;
+    public int enemyWorth; 
     public float speed = 10f;
     public bool isTurnCoat;
     public string towerTag = "Tower";
@@ -13,9 +16,8 @@ public class Enemy : MonoBehaviour {
     public Transform firepoint;
     public Transform partToRotate;
     public GameObject bulletPrefab;
-
-    private int enemyStartHealth = 4;
-    private int enemyHealth;
+    public bool isDead;
+    
     private float fireCountdown = 0f;
     private float fireRate = 1f;
     private float gunTurnSpeed = 10f;
@@ -26,33 +28,29 @@ public class Enemy : MonoBehaviour {
     [Header("Unity Stuff")]
     public GameObject healthBar;
 
+    public GameObject playerBase;
+    public PlayerStats playerStats;
+
 	// Use this for initialization
 	void Start () {
+        playerBase = GameObject.Find("Player");
+        playerStats = playerBase.GetComponent<PlayerStats>();
+
         enemyHealth = enemyStartHealth;
-        //Debug.Log("Enemy health " + enemyHealth);
         target = Waypoints.points[0];
         enemyTarget = null;
         isTurnCoat = false;
+        isDead = false;
 
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
     // Update is called once per frame
     void Update () {
-        //Vector3 dir = target.position - transform.position;
-        //transform.Translate(dir.normalized * speed * Time.deltaTime);
-
-        //if(Vector3.Distance(transform.position, target.position) <= 0.2f)
-        //{
-        //    GetNextWaypoint();
-        //}
 
         StartCoroutine(Move());
 
-        AimAtEnemy();
-        //UpdateTarget();
-
-        
+        AimAtEnemy();   
     }
 
     void AimAtEnemy()
@@ -109,18 +107,19 @@ public class Enemy : MonoBehaviour {
         enemyHealth -= damage;
 
         //healthBar.fillAmount = enemyHealth / enemyStartHealth;
-        healthBar.transform.localScale -= new Vector3(0.5f, 0, 0);
+        //healthBar.transform.localScale -= new Vector3(0.5f, 0, 0);
 
         //Debug.Log("Enemy health "+enemyHealth);
-        if (enemyHealth <= 0)
-            Destroy(gameObject); //kill enemy
+        if (enemyHealth <= 0 && !isDead)
+            Die();
     }
 
     void GetNextWaypoint()
     {
         if(wayPointIndex >= Waypoints.points.Length - 1) //reaches end of waypoints
         {
-            Destroy(gameObject);
+            Destroy(gameObject); //kill enemy
+            playerStats.health--;
             //GameObject gorp = GameObject.Find("Player");
             //PlayerStats ps = gorp.GetComponent<PlayerStats>();
             //ps.Damage();
@@ -179,5 +178,13 @@ public class Enemy : MonoBehaviour {
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, range);
+    }
+
+    void Die()
+    {
+        isDead = true;
+        playerStats.wallet += enemyWorth;
+        WaveSpawner.enemiesAlive--; //nonstatic var, thus no need for reference
+        Destroy(gameObject); //kill enemy
     }
 }

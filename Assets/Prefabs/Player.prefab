@@ -52,3 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
+  wallet: 5
+  walletText: {fileID: 0}
+  healthText: {fileID: 0}

@@ -10,14 +10,13 @@ public class Tower : MonoBehaviour {
     //All tower cards inherit from the main tower class.
 
     [Header("Health")]
-    public float towerHealth = 20;
+    public static float towerHealth = 20;
 
     [Header("Attack Variables")]
     public float fireRate = 1f;
     private float fireCountdown = 0f;
     public float range = 15f;
     public int towerAttack;
-    //public int towerHealth = 20;
     public Transform firepoint;
     public GameObject bulletPrefab;
 

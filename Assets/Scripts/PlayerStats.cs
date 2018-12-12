@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour {
 
     public int health;
-    public GameObject healthBar;
+    public int wallet = 5;
+    public Text walletText;
+    public Text healthText;
 
 	// Use this for initialization
 	void Start () {
@@ -15,6 +18,8 @@ public class PlayerStats : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        DisplayUI();
+
 		if(health <= 0)
         {
             Debug.Log("Game over! You lose!!");
@@ -22,28 +27,18 @@ public class PlayerStats : MonoBehaviour {
         }
 	}
 
-    public void Damage()
+    void DisplayUI()
     {
-        healthBar.transform.localScale -= new Vector3(.5f, 0, 0);
-        health--;
-        Debug.Log("Player-Player health: " + health);
+        //UI displays here
+        healthText.text = "HEALTH: " + (health);
+        walletText.text = "$ "+wallet;
     }
-
-    //void OnCollisionEnter(Collision col)
-    //{
-    //    Debug.Log("Boop!");
-    //    if (col.collider.tag == "Enemy")
-    //    {
-    //        Damage();
-    //    }
-    //}
 
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log("Boop!");
         if (col.tag == "Enemy")
         {
-            Damage();
+            health--;
         }
     }
 }

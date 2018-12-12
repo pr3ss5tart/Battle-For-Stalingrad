@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class PauseGame : MonoBehaviour {
 
     public GameObject pauseMenu;
-    public GameManager gameManager;
+    //public GameManager gameManager;
     public Node node;
     public bool isPaused;
 
@@ -25,7 +25,7 @@ public class PauseGame : MonoBehaviour {
     public void ContinueGame()
     {
         Debug.Log("Game continues!");
-        gameManager.isPaused = false;
+        //gameManager.isPaused = false;
         node.cantBuild = false;
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
@@ -39,7 +39,7 @@ public class PauseGame : MonoBehaviour {
     public void Pause()
     {
         pauseMenu.SetActive(true);
-        gameManager.isPaused = true;
+        //gameManager.isPaused = true;
         node.cantBuild = true;
         Time.timeScale = 0f;
     }

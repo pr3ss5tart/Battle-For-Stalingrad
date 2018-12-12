@@ -50,7 +50,7 @@ public class Spells : MonoBehaviour {
         GameObject hitEffectInstance = (GameObject)Instantiate(molotovHitEffect, clickPos, transform.rotation);
         Destroy(hitEffectInstance, 1.5f);
 
-        areaOfEffect = 10f;
+        areaOfEffect = 20f;
         Collider[] colliders = Physics.OverlapSphere(clickPos, areaOfEffect);
         foreach (Collider col in colliders)
         {
@@ -79,6 +79,6 @@ public class Spells : MonoBehaviour {
         Enemy e = enemy.GetComponent<Enemy>();
 
         Destroy(gameObject);
-        e.TakeDamage(5);
+        e.TakeDamage(10);
     }
 }
