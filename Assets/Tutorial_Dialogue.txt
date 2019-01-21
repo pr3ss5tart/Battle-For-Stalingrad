@@ -1,0 +1,7 @@
+1. Welcome to Battle for Miami!  This is a brief tutorial of how to play. First off, where the arrow is pointing, those are your cards. More on them later, but know they have resource costs, HP, and attack equal to the values on the card.
+
+2. The main goal is to stop the Russians from destroying your base. You do this by click-dragging the card into play, then clicking where you want it to be. However, you need enough resources to play the card. See the arrow!
+
+3. Enemies will come out of this spawner. Be careful though! Some of them are tougher or quicker than others. And if 5 or more of them collide with your base, it's game over for you!
+
+4. Finally, if you get caught up in the heat of the battle and need a second to think, you can always hit pause to give yourself some time. Click pause now, then press continue when you are ready to play this level!
